@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#00c853</item>
+        <item name="colorPrimaryDark">#009624</item>
+        <item name="colorAccent">#5efc82</item>
+        <item name="colorButtonNormal">#00c853</item>
+    </style>
+
+    <style name="questions_style">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="resultHeader">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="resultElemnts">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+
+    <style name="resultState">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+</resources>
