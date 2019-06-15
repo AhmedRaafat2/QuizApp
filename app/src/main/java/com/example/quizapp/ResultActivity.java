@@ -31,7 +31,7 @@ public class ResultActivity extends AppCompatActivity {
         int percentage = (Math.multiplyExact(SCORE, 100) / 4);
         //Need Comment on this case please
         // i used here (int percentage = SCORE / 4 * 100;)
-        //but i didn't work every time gives me that percentage =0
+        //but i didn't work. and every time gives me that percentage =0
         studentScore.setText(getString(R.string.studentScore_part1) + " " + SCORE + " " + getString(R.string.studentScore_part2));
         studentPercentage.setText(getString(R.string.studentPercentage) + " " + percentage + "%");
 
