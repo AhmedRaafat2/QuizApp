@@ -1,7 +1,11 @@
 package com.example.quizapp;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -32,7 +36,9 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
    @BindView(R.id.q6_a3_btn) CheckBox questionSixA3;
    @BindView(R.id.q6_a4_btn) CheckBox questionSixA4;
    @BindView(R.id.q7_answer) EditText questionSevenAnswer_et;
+   private CountDownTimer counter;
    private int studentScore =0;
+   private long millisUntilFinished =0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,22 +46,30 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_exam);
         ButterKnife.bind(this);
         finish_exam_btn.setOnClickListener(this);
+        if(savedInstanceState != null){
+            this.millisUntilFinished = savedInstanceState.getLong("counter");
+        }
 
         //this block of code to handle the timer for exam
         //every 1000 milli second = 1 second
-        new CountDownTimer(180000, 1000) {
+        counter = new CountDownTimer(180000, 1000) {
 
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
                 timer.setText("Remaining: " + TimeUnit.MILLISECONDS.toMinutes(millisUntilFinished) +":"+ TimeUnit.MILLISECONDS.toSeconds(millisUntilFinished)%60);
+                ExamActivity.this.millisUntilFinished = millisUntilFinished;
             }
 
+            @RequiresApi(api = Build.VERSION_CODES.N)
             public void onFinish() {
                 finishExam();
             }
         }.start();
+
+
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.finish_exam){
@@ -63,6 +77,8 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void finishExam(){
         if(questionOneGroup.getCheckedRadioButtonId() == R.id.q1_a2_btn){
             studentScore++;
@@ -103,4 +119,14 @@ public class ExamActivity extends AppCompatActivity implements View.OnClickListe
         }
         finish();
     }
+
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putLong("counter",millisUntilFinished);
+
+
+    }
+
 }
